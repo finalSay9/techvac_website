@@ -1,92 +1,42 @@
 import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Projects', href: '#projects' },
-  ];
+export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-gray-900/95 backdrop-blur-sm shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#home">
-              <h1 className="text-3xl font-bold cursor-pointer hover:scale-105 transition-transform">
-                <span className="text-teal-400 text-4xl">T</span>
-                <span className="text-white">echVac</span>
-              </h1>
-            </a>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 bg-gray-800/80 px-6 py-2 rounded-full border border-gray-700">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white hover:text-teal-400 px-4 py-2 rounded-full transition-all duration-300 hover:bg-gray-700"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-white hover:text-teal-400 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4 sm:py-6">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="text-2xl sm:text-3xl font-bold flex items-center">
+          <span className="text-5xl sm:text-6xl text-teal-400">T</span>
+          <span className="text-white">echVac</span>
         </div>
+
+        <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3">
+          <a href="#home" className="text-white hover:text-teal-400 transition-colors px-4">Home</a>
+          <a href="#services" className="text-white hover:text-teal-400 transition-colors px-4">Services</a>
+          <a href="#about" className="text-white hover:text-teal-400 transition-colors px-4">About</a>
+          <a href="#contact" className="text-white hover:text-teal-400 transition-colors px-4">Contact</a>
+          <a href="#projects" className="text-white hover:text-teal-400 transition-colors px-4">Projects</a>
+        </div>
+
+        <button
+          className="md:hidden text-white z-50"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden bg-gray-800 border-t border-gray-700">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-white hover:text-teal-400 block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 transition"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-gray-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8">
+          <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-white text-2xl hover:text-teal-400 transition-colors">Home</a>
+          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-white text-2xl hover:text-teal-400 transition-colors">Services</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-white text-2xl hover:text-teal-400 transition-colors">About</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-white text-2xl hover:text-teal-400 transition-colors">Contact</a>
+          <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="text-white text-2xl hover:text-teal-400 transition-colors">Projects</a>
         </div>
       )}
     </nav>
   );
-};
-
-export default Navbar;
+}

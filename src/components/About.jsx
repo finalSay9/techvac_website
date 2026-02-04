@@ -1,66 +1,63 @@
+import React from 'react';
 
+export default function About() {
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-const About = () => {
   return (
-    <section 
-      id="about" 
-      className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900 to-sky-800 py-20 px-4"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 py-20 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-
-          {/* Content - Left on Desktop */}
+          {/* Image Card */}
           <div 
-            className="order-2 md:order-1" 
+            className="order-2 md:order-1"
             data-aos="fade-right"
-            data-aos-duration="1000"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3">
-              About Us
-            </h2>
-            <div className="w-24 h-1 bg-teal-400 mb-6"></div>
-            <p className="text-gray-200 text-base md:text-lg leading-relaxed mb-6">
-              We are a cutting-edge technology company dedicated to delivering innovative solutions 
-              to our valued customers. From AI-powered applications to comprehensive software development, 
-              TechVac transforms your digital vision into reality with excellence and precision.
-            </p>
-            <p className="text-gray-200 text-base md:text-lg leading-relaxed mb-8">
-              Our team of expert developers, designers, and data scientists work collaboratively 
-              to create solutions that drive business growth and exceed expectations. We specialize 
-              in modern web technologies, machine learning, and stunning graphic design.
-            </p>
-            <a 
-              href="#services" 
-              className="inline-block px-8 py-3 bg-gradient-to-r from-sky-500 to-blue-700 text-white rounded-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 font-semibold"
-            >
-              Learn More
-            </a>
-          </div>
-
-          {/* Image Card - Right on Desktop */}
-          <div 
-            className="order-1 md:order-2" 
-            data-aos="fade-left"
-            data-aos-duration="1000"
-          >
-            <div className="rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
-              <div className="relative w-full h-96 bg-gradient-to-br from-teal-500 via-blue-500 to-purple-600 flex items-center justify-center">
-                {/* Placeholder for AI Image */}
-                <div className="text-center text-white p-8">
-                  <svg className="w-32 h-32 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 7H7v6h6V7z"/>
-                    <path fillRule="evenodd" d="M7 2a1 1 0 012 0v1h2V2a1 1 0 112 0v1h2a2 2 0 012 2v2h1a1 1 0 110 2h-1v2h1a1 1 0 110 2h-1v2a2 2 0 01-2 2h-2v1a1 1 0 11-2 0v-1H9v1a1 1 0 11-2 0v-1H5a2 2 0 01-2-2v-2H2a1 1 0 110-2h1V9H2a1 1 0 010-2h1V5a2 2 0 012-2h2V2zM5 5h10v10H5V5z" clipRule="evenodd"/>
-                  </svg>
-                  <p className="text-xl font-bold">AI-Powered Innovation</p>
-                </div>
-              </div>
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+              <img 
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+                alt="AI Technology"
+                className="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover"
+              />
             </div>
           </div>
 
+          {/* Content */}
+          <div 
+            className="order-1 md:order-2 space-y-6"
+            data-aos="fade-left"
+          >
+            <div>
+              <h2 className="text-5xl md:text-6xl font-black text-white mb-4">About Us</h2>
+              <div className="h-1 w-32 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full"></div>
+            </div>
+            
+            <p className="text-lg text-white/70 leading-relaxed">
+              TechVac is a forward-thinking technology company dedicated to delivering innovative solutions that empower businesses to thrive in the digital age. We specialize in software development, data science, machine learning, and graphic design, providing comprehensive tech solutions tailored to our valued customers' unique needs.
+            </p>
+            
+            <p className="text-lg text-white/70 leading-relaxed">
+              Our team of expert developers, designers, and data scientists work collaboratively to transform complex challenges into elegant, scalable solutions. We're committed to excellence, innovation, and delivering measurable results that drive your business forward.
+            </p>
+
+            <button 
+              onClick={() => scrollToSection('services')}
+              className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+            >
+              <span className="relative z-10">Learn More</span>
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-sky-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+            </button>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

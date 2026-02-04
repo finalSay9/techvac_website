@@ -1,83 +1,82 @@
+import React from 'react';
 
-
-const Services = () => {
+export default function Services() {
   const services = [
     {
-      title: 'Graphics Designing',
-      description: 'Creative visual solutions that bring your brand to life with stunning designs and compelling visuals that captivate your audience.',
-      icon: '🎨',
-      position: 'left'
+      title: 'Graphic Design',
+      description: 'Creating stunning visual identities, logos, brand materials, and marketing collateral that captivate your audience and communicate your brand\'s unique story.',
+      image: 'https://images.unsplash.com/photo-1626785774625-0b1c2c4eab67?w=800&q=80',
+      gradient: 'from-purple-500 to-pink-500',
+      delay: '0'
     },
     {
       title: 'Software Development',
-      description: 'Full-stack web and mobile applications built with cutting-edge technologies, best practices, and scalable architecture.',
-      icon: '💻',
-      position: 'center'
+      description: 'Building robust, scalable applications and web solutions using cutting-edge technologies. From MVP to enterprise systems, we bring your vision to life.',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+      gradient: 'from-blue-600 to-cyan-500',
+      delay: '200'
     },
     {
       title: 'Data Science & ML',
-      description: 'Advanced machine learning models and data-driven insights to power your business decisions and unlock new opportunities.',
-      icon: '🤖',
-      position: 'right'
+      description: 'Leveraging advanced analytics, machine learning, and AI to unlock insights from your data and drive intelligent decision-making for your business.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+      gradient: 'from-emerald-500 to-teal-500',
+      delay: '400'
     }
   ];
 
   return (
-    <section id="services" className="min-h-screen bg-white py-20 px-4">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="min-h-screen bg-white py-20 px-4 md:px-8 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 2px 2px, #0ea5e9 1px, transparent 0)',
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
 
+      <div className="max-w-7xl mx-auto relative z-10">
         <h2 
-          className="text-5xl md:text-6xl font-bold text-center text-gray-900 mb-20" 
+          className="text-5xl md:text-7xl font-black text-slate-900 text-center mb-20"
           data-aos="fade-down"
-          data-aos-duration="800"
         >
-          Services
+          Our Services
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
-
+        {/* Services Cards */}
+        <div className="flex flex-col md:flex-row gap-8 items-stretch">
           {services.map((service, index) => (
-            <div
+            <div 
               key={index}
-              className="bg-white rounded-xl shadow-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-gray-100"
-              data-aos={
-                service.position === 'left' ? 'fade-right' : 
-                service.position === 'right' ? 'fade-left' : 
-                'fade-up'
-              }
-              data-aos-delay={service.position === 'center' ? '0' : '200'}
-              data-aos-duration="800"
+              className="flex-1"
+              data-aos={index === 0 ? "fade-right" : index === 1 ? "fade-up" : "fade-left"}
+              data-aos-delay={service.delay}
             >
-              {/* Icon/Image Area */}
-              <div className="relative w-full h-64 bg-gradient-to-br from-teal-400 via-blue-500 to-purple-600 flex items-center justify-center">
-                <span className="text-8xl">{service.icon}</span>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
-                  {service.description}
-                </p>
-                <a 
-                  href="#" 
-                  className="inline-flex items-center text-teal-500 hover:text-teal-600 font-semibold transition-colors group"
-                >
-                  Learn More 
-                  <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
+              <div className={`group h-full bg-gradient-to-br ${service.gradient} rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}>
+                <div className="h-64 overflow-hidden">
+                  <img 
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-8 space-y-4">
+                  <h3 className="text-3xl font-bold text-white">{service.title}</h3>
+                  <p className="text-white/90 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <button className="inline-flex items-center gap-2 text-white font-semibold hover:gap-4 transition-all">
+                    Learn More 
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           ))}
-
         </div>
       </div>
     </section>
   );
-};
-
-export default Services;
+}
